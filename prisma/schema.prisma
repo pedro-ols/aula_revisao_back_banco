@@ -27,3 +27,17 @@ model Anime {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Personagem {
+  id Int @id @default(autoincrement())
+  name String 
+  description String? 
+  age Int 
+  power Boolean
+  anime String
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("personagens")
+}
