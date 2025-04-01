@@ -2,9 +2,9 @@ import AnimeModel from "../models/animeModel.js";
 
 class AnimeController {
   // GET /api/animes
-  getAllAnimes(req, res) {
+   async getAllAnimes(req, res) {
     try {
-      const animes = AnimeModel.findAll();
+      const animes = await AnimeModel.findAll();
       res.json(animes);
     } catch (error) {
       console.error("Erro ao buscar animes:", error);
@@ -13,11 +13,11 @@ class AnimeController {
   }
 
   // GET /api/animes/:id
-  getAnimeById(req, res) {
+  async getAnimeById(req, res) {
     try {
       const { id } = req.params;
 
-      const anime = AnimeModel.findById(id);
+      const anime = await AnimeModel.findById(id);
 
       if (!anime) {
         return res.status(404).json({ error: "Anime não encontrado" });
@@ -31,7 +31,7 @@ class AnimeController {
   }
 
   // POST /api/animes
-  createAnime(req, res) {
+  async createAnime(req, res) {
     try {
       // Validação básica
       const {
@@ -49,7 +49,6 @@ class AnimeController {
 
       if (
         !title ||
-        !description ||
         !episodes ||
         !releaseYear ||
         !studio ||
@@ -63,7 +62,7 @@ class AnimeController {
       }
 
       // Criar o novo anime
-      const newAnime = AnimeModel.create(
+      const newAnime = await AnimeModel.create(
         title,
         description,
         episodes,
@@ -86,7 +85,7 @@ class AnimeController {
   }
 
   // PUT /api/animes/:id
-  updateAnime(req, res) {
+  async updateAnime(req, res) {
     try {
       const { id } = req.params;
       const {
@@ -101,7 +100,7 @@ class AnimeController {
       } = req.body;
 
       // Atualizar o anime
-      const updatedAnime = AnimeModel.update(
+      const updatedAnime = await AnimeModel.update(
         id,
         title,
         description,
@@ -125,12 +124,12 @@ class AnimeController {
   }
 
   // DELETE /api/animes/:id
-  deleteAnime(req, res) {
+  async deleteAnime(req, res) {
     try {
       const { id } = req.params;
 
       // Remover o anime
-      const result = AnimeModel.delete(id);
+      const result = await AnimeModel.delete(id);
 
       if (!result) {
         return res.status(404).json({ error: "Anime não encontrado" });
