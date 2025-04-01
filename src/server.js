@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import router from "./routes/animeRoutes.js";
 
 config(); // Carrega variáveis de ambiente do arquivo .env
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4001;
 
 // Inicializa o Express
 const app = express();

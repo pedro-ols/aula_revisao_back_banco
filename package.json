@@ -8,7 +8,7 @@
     "prisma"
   ],
   "license": "MIT",
-  "author": "Felipe Dev",
+  "author": "Pedro Santos",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
@@ -16,8 +16,10 @@
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prisma": "^6.5.0"
   }
 }
