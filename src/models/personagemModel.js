@@ -9,8 +9,6 @@ class PersonagemModel {
       },
     });
 
-    console.log(personagens);
-
     return personagens;
   }
 
@@ -26,26 +24,14 @@ class PersonagemModel {
   }
 
   // Criar um novo personagem
-  async create(
-    title,
-    description,
-    episodes,
-    releaseYear,
-    studio,
-    genres,
-    rating,
-    imageUrl
-  ) {
+  async create(name, description, age, power, anime) {
     const newPersonagem = await prisma.personagem.create({
       data: {
-        title,
+        name,
         description,
-        episodes,
-        releaseYear,
-        studio,
-        genres,
-        rating,
-        imageUrl,
+        age,
+        power,
+        anime,
       },
     });
 
@@ -53,17 +39,7 @@ class PersonagemModel {
   }
 
   // Atualizar um personagem
-  async update(
-    id,
-    title,
-    description,
-    episodes,
-    releaseYear,
-    studio,
-    genres,
-    rating,
-    imageUrl
-  ) {
+  async update(name, description, age, power, anime) {
     const personagem = await this.findById(id);
 
     if (!personagem) {
@@ -72,31 +48,22 @@ class PersonagemModel {
 
     // Atualize o personagem existente com os novos dados
     const data = {};
-    if (title !== undefined) {
-      data.title = title;
+    if (name !== undefined) {
+      data.name = name;
     }
     if (description !== undefined) {
       data.description = description;
     }
-    if (episodes !== undefined) {
-      data.episodes = episodes;
+    if (age !== undefined) {
+      data.age = age;
     }
-    if (releaseYear !== undefined) {
-      data.releaseYear = releaseYear;
+    if (power !== undefined) {
+      data.power = power;
     }
-    if (studio !== undefined) {
-      data.studio = studio;
+    if (anime !== undefined) {
+      data.anime = anime;
     }
-    if (genres !== undefined) {
-      data.genres = genres;
-    }
-    if (rating !== undefined) {
-      data.rating = rating;
-    }
-    if (imageUrl !== undefined) {
-      data.imageUrl = imageUrl;
-    }
-
+    
     const personagemUpdated = await prisma.personagem.update({
       where: {
         id: Number(id),
